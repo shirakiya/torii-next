@@ -9,6 +9,9 @@ exec/bash:
 run/bash:
 	docker compose run --rm server /bin/bash
 
+lint:
+	$(RUN_CONTEXT) npm run lint
+
 prettier/check:
 	$(RUN_CONTEXT) npm run prettier
 
