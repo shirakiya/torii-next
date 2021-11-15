@@ -1,5 +1,9 @@
 RUN_CONTEXT?=docker compose run --rm server
 
+bootstrap:
+	# Bootstrap to setup Vercel.
+	$(RUN_CONTEXT) npx vercel dev
+
 up:
 	docker compose up
 

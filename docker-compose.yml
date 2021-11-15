@@ -5,6 +5,8 @@ x-node: &node
   working_dir: /app
   volumes:
     - ./:/app
+    # To persist the auth token for Vercel CLI.
+    - vercel_auth:/root/.local/share/com.vercel.cli/
 
 services:
   npm:
@@ -19,8 +21,11 @@ services:
       npm:
         # run server after npm install
         condition: service_completed_successfully
-    command: ["npm", "run", "dev"]
+    command: ["npm", "run", "vdev"]
     ports:
       - 3000:3000
     environment:
       - RUN_CONTEXT=
+
+volumes:
+  vercel_auth:
