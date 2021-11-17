@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "vdev": "vercel dev",
+    "build": "next build",
     "lint": "next lint",
     "prettier": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "prettier-write": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\""
