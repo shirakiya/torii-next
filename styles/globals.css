@@ -2,15 +2,62 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 1rem;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+footer {
+  border-top: 1px solid lightgray;
+  margin-top: 20px;
+  padding: 8px 0;
 }
 
-* {
-  box-sizing: border-box;
+.navbar .navbar-brand img {
+  margin-right: 5px;
+}
+
+#top-message {
+  margin: 10px 0 15px;
+}
+
+.input-field-container {
+  margin-top: 20px;
+}
+
+.input-field-container .submit {
+  margin-top: 10px;
+}
+
+.result-field-container {
+  margin-top: 20px;
+}
+
+.result-field-container .result-field-content {
+  margin-top: 15px;
+}
+
+.CodeMirror {
+  border: 1px solid lightgray;
+}
+
+.CodeMirror .CodeMirror-placeholder {
+  color: gray;
+}
+
+.statement-editor .CodeMirror {
+  height: 390px;
+}
+
+.statement-editor .is-invalid .CodeMirror {
+  border-color: #df382c;
+}
+
+.context-editor .CodeMirror {
+  height: 300px;
+}
+
+.context-editor .is-invalid .CodeMirror {
+  border-color: #df382c;
 }

@@ -4,6 +4,9 @@ import Script from "next/script"
 import { useEffect } from "react"
 import { GTM_ID, pageview } from "../lib/gtm"
 
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootswatch/dist/united/bootstrap.min.css"
+
 import "../styles/globals.css"
 
 function MyApp({ Component, pageProps }: AppProps) {
