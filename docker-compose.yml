@@ -1,7 +1,9 @@
 version: "3.9"
 
 x-node: &node
-  image: node:14.18.1-slim
+  build:
+    context: .
+    dockerfile: Dockerfile.dev
   working_dir: /app
   volumes:
     - ./:/app
@@ -12,8 +14,6 @@ services:
   npm:
     <<: *node
     command: ["npm", "install"]
-    environment:
-      - RUN_CONTEXT=
 
   server:
     <<: *node
@@ -26,6 +26,8 @@ services:
       - 3000:3000
     environment:
       - RUN_CONTEXT=
+      - FLASK_ENV=development
+      - FLASK_APP=index.py
 
 volumes:
   vercel_auth:
