@@ -7,10 +7,6 @@ class MyDocument extends Document {
         <Head>
           <meta charSet="utf-8" />
           <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-          />
-          <meta
             name="description"
             content="Torii(鳥居) is the testing tool for Jinja2. You can test or use Jinja2 by trial with Torii."
           />
@@ -33,6 +29,7 @@ class MyDocument extends Document {
           <meta property="og:image:height" content="256" />
           <meta name="twitter:card" content="summary" />
           <meta name="twitter:creator" content="@shirakiya831" />
+          <link rel="icon" href="/favicon.ico" />
           <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
         </Head>
         <body>
