@@ -9,6 +9,12 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "bootswatch/dist/united/bootstrap.min.css"
 import "../styles/globals.css"
 
+const getTitle = () => {
+  return process.env.NODE_ENV === "development"
+    ? "dev - Torii(鳥居)"
+    : "Torii(鳥居)"
+}
+
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
@@ -38,7 +44,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       />
 
       <Head>
-        <title>Torii(鳥居)</title>
+        <title>{getTitle()}</title>
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
