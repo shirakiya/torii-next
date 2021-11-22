@@ -1,5 +1,5 @@
-export interface Version {
-  major: number
-  minor: number
-  patch: number
+export interface SemVer {
+  major: string
+  minor: string
+  patch: string
 }

@@ -1,25 +1,16 @@
-import type { NextPage } from "next"
+import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next"
 import { Card, Container } from "react-bootstrap"
+import useSWR from "swr"
 import NavBar from "../components/navBar"
-import { Version } from "../lib/version"
+import { SemVer } from "../lib/version"
 
-const Home: NextPage = () => {
-  // TODO: Get from API.
-  const pyVer: Version = {
-    major: 3,
-    minor: 6,
-    patch: 0,
-  }
-  const jinjaVer: Version = {
-    major: 2,
-    minor: 11,
-    patch: 0,
-  }
+const Home: NextPage = ({}) => {
+  const { pythonVersion, jinjaVersion } = useVersion()
 
   return (
     <div>
       <main id="main">
-        <NavBar pythonVersion={pyVer} jinjaVersion={jinjaVer} />
+        <NavBar pythonVersion={pythonVersion} jinjaVersion={jinjaVersion} />
         <Container>
           <div id="top-message">
             <Card>
@@ -36,6 +27,23 @@ const Home: NextPage = () => {
       </main>
     </div>
   )
+}
+
+const fetcher = (url: string) => fetch(url).then(res => res.json())
+
+const useVersion = () => {
+  const { data, error } = useSWR("/api/version", fetcher)
+
+  if (error) {
+    console.error(error)
+  }
+
+  return {
+    pythonVersion: data?.python_version,
+    jinjaVersion: data?.jinja_version,
+    // isLoading: !error && !data,
+    // isError: error,
+  }
 }
 
 export default Home

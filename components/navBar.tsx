@@ -1,14 +1,42 @@
 import Link from "next/link"
 import type React from "react"
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap"
-import { Version } from "../lib/version"
+import { SemVer } from "../lib/version"
 
 type Props = {
-  pythonVersion: Version
-  jinjaVersion: Version
+  pythonVersion: SemVer | undefined
+  jinjaVersion: SemVer | undefined
 }
 
 const NavBar: React.FC<Props> = ({ pythonVersion, jinjaVersion }) => {
+  const python = pythonVersion ? (
+    <Link
+      href={`https://docs.python.jp/${pythonVersion.major}.${pythonVersion.minor}/`}
+      passHref={true}
+    >
+      <a className="dropdown-item" target="_blank" rel="noopener noreferrer">
+        Python version: {pythonVersion.major}.{pythonVersion.minor}.
+        {pythonVersion.patch}
+      </a>
+    </Link>
+  ) : (
+    <NavDropdown.Item>Python version: -</NavDropdown.Item>
+  )
+
+  const jinja2 = jinjaVersion ? (
+    <Link
+      href={`https://jinja.palletsprojects.com/en/${jinjaVersion.major}.${jinjaVersion.minor}.x/`}
+      passHref={true}
+    >
+      <a className="dropdown-item" target="_blank" rel="noopener noreferrer">
+        Jinja2 version: {jinjaVersion.major}.{jinjaVersion.minor}.
+        {jinjaVersion.patch}
+      </a>
+    </Link>
+  ) : (
+    <NavDropdown.Item>Jinja2 version: -</NavDropdown.Item>
+  )
+
   return (
     <Navbar bg="primary" expand="lg" variant="dark">
       <Container>
@@ -25,32 +53,8 @@ const NavBar: React.FC<Props> = ({ pythonVersion, jinjaVersion }) => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <NavDropdown title="Information" id="collasible-nav-dropdown">
-              <Link
-                href={`https://docs.python.jp/${pythonVersion.major}.${pythonVersion.minor}/`}
-                passHref={true}
-              >
-                <a
-                  className="dropdown-item"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Python version: {pythonVersion.major}.{pythonVersion.minor}.
-                  {pythonVersion.patch}
-                </a>
-              </Link>
-              <Link
-                href={`https://jinja.palletsprojects.com/en/${jinjaVersion.major}.${jinjaVersion.minor}.x/`}
-                passHref={true}
-              >
-                <a
-                  className="dropdown-item"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Jinja2 version: {jinjaVersion.major}.{jinjaVersion.minor}.
-                  {jinjaVersion.patch}
-                </a>
-              </Link>
+              {python}
+              {jinja2}
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

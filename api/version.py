@@ -5,18 +5,23 @@ from http.server import BaseHTTPRequestHandler
 import jinja2
 
 
-def get_python_version():
-    v = sys.version_info
-
-    return '{0}.{1}.{2}'.format(v.major, v.minor, v.micro)
-
-
 class handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
+        pyVer = sys.version_info
+        jinjaVer = jinja2.__version__.split('.')
+
         res_body = json.dumps({
-            'python_version': get_python_version(),
-            'jinja_version': jinja2.__version__,
+            'python_version': {
+                'major': str(pyVer.major),
+                'minor': str(pyVer.minor),
+                'patch': str(pyVer.micro),
+            },
+            'jinja_version': {
+                'major': jinjaVer[0],
+                'minor': jinjaVer[1],
+                'patch': jinjaVer[2],
+            },
         })
 
         self.send_response(200)
