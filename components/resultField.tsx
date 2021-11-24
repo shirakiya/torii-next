@@ -14,7 +14,7 @@ const ResultField: React.FC<Props> = ({ result, errorMessage }) => {
       if (line.match(regexp)) {
         return <br key={index} />
       } else {
-        return <span>{line}</span>
+        return <span key={index}>{line}</span>
       }
     })
   }

@@ -28,6 +28,9 @@ class handler(BaseHTTPRequestHandler):
         except ContentLengthMissingError as e:
             self._response_as_error(411, str(e))
             return
+        except KeyError as e:
+            self._response_as_error(400, '{} is missing'.format(e))
+            return
         except Exception as e:
             self._response_as_error(400, str(e))
             return

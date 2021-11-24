@@ -14,12 +14,35 @@ const Home: NextPage = ({}) => {
   const { pythonVersion, jinjaVersion } = useVersion()
 
   const [rendered, setRendered] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
 
   const onSubmit = async (template: string, context: string) => {
-    // TODO: submit
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    const res = await fetch("/api/render", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        template,
+        context,
+      }),
+    })
 
-    setRendered("xxx")
+    if (res.status !== 200) {
+      console.error(res)
+
+      try {
+        const errorBody = await res.json()
+        setErrorMessage(`[${errorBody.type}] ${errorBody.message}`)
+      } catch {
+        setErrorMessage("Unknown error was occured. See the developer console.")
+      }
+
+      return
+    }
+
+    const body = await res.json()
+    setRendered(body.rendered)
   }
 
   return (
@@ -37,7 +60,7 @@ const Home: NextPage = ({}) => {
             </Card>
           </div>
           <InputField onSubmit={onSubmit} />
-          <ResultField result={rendered} />
+          <ResultField result={rendered} errorMessage={errorMessage} />
         </Container>
       </main>
     </div>
