@@ -1,11 +1,20 @@
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next"
+import dynamic from "next/dynamic"
 import { Card, Container } from "react-bootstrap"
 import useSWR from "swr"
 import NavBar from "../components/navBar"
-import { SemVer } from "../lib/version"
+
+const InputField = dynamic(() => import("../components/inputField"), {
+  ssr: false,
+})
 
 const Home: NextPage = ({}) => {
   const { pythonVersion, jinjaVersion } = useVersion()
+
+  const onSubmit = async (template: string, context: string) => {
+    // TODO: submit
+    await new Promise(resolve => setTimeout(resolve, 2000))
+  }
 
   return (
     <div>
@@ -21,9 +30,9 @@ const Home: NextPage = ({}) => {
               </Card.Body>
             </Card>
           </div>
-        </Container>
 
-        {/* TODO: Textarea */}
+          <InputField onSubmit={onSubmit} />
+        </Container>
       </main>
     </div>
   )
