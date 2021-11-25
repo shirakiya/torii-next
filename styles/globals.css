@@ -30,6 +30,14 @@ footer {
   margin-top: 10px;
 }
 
+.context-settings-title {
+  display: inline-block;
+}
+
+.context-title {
+  display: inline-block;
+}
+
 .result-field-container {
   margin-top: 20px;
 }

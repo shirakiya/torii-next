@@ -1,6 +1,14 @@
 import type React from "react"
 import { useState } from "react"
-import { Button, Card, Col, Form, Row } from "react-bootstrap"
+import {
+  Button,
+  Card,
+  Col,
+  Form,
+  Row,
+  OverlayTrigger,
+  Tooltip,
+} from "react-bootstrap"
 import { Controlled as CodeMirror } from "react-codemirror2"
 import "codemirror/lib/codemirror.css"
 import "codemirror/mode/jinja2/jinja2"
@@ -74,14 +82,22 @@ const InputField: React.FC<Props> = ({ onSubmit, errorType }) => {
           </Col>
           <Col md={6}>
             <Form.Group>
-              <h3 data-tip data-for="context-title">
-                Context Settings
-              </h3>
+              <OverlayTrigger
+                placement="top"
+                overlay={
+                  <Tooltip>Set your context object used for rendering.</Tooltip>
+                }
+              >
+                <h3 className="context-settings-title">Context Settings</h3>
+              </OverlayTrigger>
               <Card className="card context-container">
                 <Card.Body>
-                  <h5 data-tip data-for="context-object-description">
-                    Context object
-                  </h5>
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={<Tooltip>Input Python dict object</Tooltip>}
+                  >
+                    <h5 className="context-title">Context object</h5>
+                  </OverlayTrigger>
                   <CodeMirror
                     className={`context-editor ${isInvalidContextClass}`}
                     options={contextOptions}
