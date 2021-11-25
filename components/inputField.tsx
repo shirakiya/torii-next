@@ -13,7 +13,6 @@ import { Controlled as CodeMirror } from "react-codemirror2"
 import "codemirror/lib/codemirror.css"
 import "codemirror/mode/jinja2/jinja2"
 import "codemirror/mode/python/python"
-import "codemirror/addon/display/placeholder"
 
 const templateOptions = {
   mode: "jinja2",
