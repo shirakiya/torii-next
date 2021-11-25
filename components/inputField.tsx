@@ -19,22 +19,31 @@ const contextOptions = {
   lineWrapping: true,
 }
 
+const defaultTemplate =
+  "{% if isFirst %}Nice to meet you.{% else %}Hello.{% endif %}"
+const defaultContext = "{\n  'isFirst': True,\n  'list_a': ['b', 'c'],\n}"
+
 type Props = {
   onSubmit: (template: string, context: string) => Promise<void>
   errorType?: string
 }
 
 const InputField: React.FC<Props> = ({ onSubmit, errorType }) => {
-  const [template, setTemplate] = useState("")
-  const [context, setContext] = useState("")
+  const initialTemplate = localStorage.getItem("template") || defaultTemplate
+  const initialContext = localStorage.getItem("context") || defaultContext
+
+  const [template, setTemplate] = useState(initialTemplate)
+  const [context, setContext] = useState(initialContext)
   const [inSubmit, setInSubmit] = useState(false)
 
   const handleTemplateInput = (_: any, __: any, value: string) => {
     setTemplate(value)
+    localStorage.setItem("template", value)
   }
 
   const handleContextInput = (_: any, __: any, value: string) => {
     setContext(value)
+    localStorage.setItem("context", value)
   }
 
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
