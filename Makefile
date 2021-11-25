@@ -4,9 +4,6 @@ bootstrap:
 	# Bootstrap to setup Vercel.
 	$(RUN_CONTEXT) npx vercel dev
 
-pull-env:
-		$(RUN_CONTEXT) npx vercel env pull
-
 up:
 	docker compose up
 
