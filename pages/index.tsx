@@ -33,8 +33,10 @@ const Home: NextPage = ({}) => {
 
       try {
         const errorBody = await res.json()
+        setRendered("")
         setErrorMessage(`[${errorBody.type}] ${errorBody.message}`)
       } catch {
+        setRendered("")
         setErrorMessage("Unknown error was occured. See the developer console.")
       }
 
@@ -43,6 +45,7 @@ const Home: NextPage = ({}) => {
 
     const body = await res.json()
     setRendered(body.rendered)
+    setErrorMessage("")
   }
 
   return (
