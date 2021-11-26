@@ -1,4 +1,5 @@
 import type React from "react"
+import { useCallback, useMemo } from "react"
 import { Alert, Card } from "react-bootstrap"
 
 type Props = {
@@ -7,7 +8,7 @@ type Props = {
 }
 
 const ResultField: React.FC<Props> = ({ result, errorMessage }) => {
-  const nl2br = (text: string): React.ReactElement[] => {
+  const nl2br = useCallback((text: string): React.ReactElement[] => {
     const regexp = /(\n)/g
 
     return text.split(regexp).map((line, index) => {
@@ -17,24 +18,26 @@ const ResultField: React.FC<Props> = ({ result, errorMessage }) => {
         return <span key={index}>{line}</span>
       }
     })
-  }
+  }, [])
 
-  let content = (
-    // defualt
-    <Alert variant="secondary">Rendering result will be showed here.</Alert>
-  )
+  const content = useMemo(() => {
+    if (errorMessage) {
+      return <Alert variant="danger">{nl2br(errorMessage)}</Alert>
+    }
+    if (result) {
+      return (
+        <Card>
+          <Card.Body>
+            <div className="lead">{nl2br(result)}</div>
+          </Card.Body>
+        </Card>
+      )
+    }
 
-  if (errorMessage) {
-    content = <Alert variant="danger">{nl2br(errorMessage)}</Alert>
-  } else if (result) {
-    content = (
-      <Card>
-        <Card.Body>
-          <div className="lead">{nl2br(result)}</div>
-        </Card.Body>
-      </Card>
+    return (
+      <Alert variant="secondary">Rendering result will be showed here.</Alert>
     )
-  }
+  }, [result, errorMessage, nl2br])
 
   return (
     <div className="result-field-container">

@@ -1,5 +1,6 @@
 import Link from "next/link"
 import type React from "react"
+import { useMemo } from "react"
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap"
 import { SemVer } from "../lib/version"
 
@@ -9,33 +10,49 @@ type Props = {
 }
 
 const NavBar: React.FC<Props> = ({ pythonVersion, jinjaVersion }) => {
-  const python = pythonVersion ? (
-    <Link
-      href={`https://docs.python.jp/${pythonVersion.major}.${pythonVersion.minor}/`}
-      passHref={true}
-    >
-      <a className="dropdown-item" target="_blank" rel="noopener noreferrer">
-        Python version: {pythonVersion.major}.{pythonVersion.minor}.
-        {pythonVersion.patch}
-      </a>
-    </Link>
-  ) : (
-    <NavDropdown.Item>Python version: -</NavDropdown.Item>
-  )
+  const python = useMemo(() => {
+    if (pythonVersion) {
+      return (
+        <Link
+          href={`https://docs.python.jp/${pythonVersion.major}.${pythonVersion.minor}/`}
+          passHref={true}
+        >
+          <a
+            className="dropdown-item"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Python version: {pythonVersion.major}.{pythonVersion.minor}.
+            {pythonVersion.patch}
+          </a>
+        </Link>
+      )
+    } else {
+      return <NavDropdown.Item>Python version: -</NavDropdown.Item>
+    }
+  }, [pythonVersion])
 
-  const jinja2 = jinjaVersion ? (
-    <Link
-      href={`https://jinja.palletsprojects.com/en/${jinjaVersion.major}.${jinjaVersion.minor}.x/`}
-      passHref={true}
-    >
-      <a className="dropdown-item" target="_blank" rel="noopener noreferrer">
-        Jinja2 version: {jinjaVersion.major}.{jinjaVersion.minor}.
-        {jinjaVersion.patch}
-      </a>
-    </Link>
-  ) : (
-    <NavDropdown.Item>Jinja2 version: -</NavDropdown.Item>
-  )
+  const jinja2 = useMemo(() => {
+    if (jinjaVersion) {
+      return (
+        <Link
+          href={`https://jinja.palletsprojects.com/en/${jinjaVersion.major}.${jinjaVersion.minor}.x/`}
+          passHref={true}
+        >
+          <a
+            className="dropdown-item"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Jinja2 version: {jinjaVersion.major}.{jinjaVersion.minor}.
+            {jinjaVersion.patch}
+          </a>
+        </Link>
+      )
+    } else {
+      return <NavDropdown.Item>Jinja2 version: -</NavDropdown.Item>
+    }
+  }, [jinjaVersion])
 
   return (
     <Navbar bg="primary" expand="lg" variant="dark">

@@ -1,5 +1,5 @@
 import type React from "react"
-import { useState } from "react"
+import { useCallback, useMemo, useState } from "react"
 import {
   Button,
   Card,
@@ -43,15 +43,15 @@ const InputField: React.FC<Props> = ({ onSubmit, errorType }) => {
   const [context, setContext] = useState(initialContext)
   const [inSubmit, setInSubmit] = useState(false)
 
-  const handleTemplateInput = (_: any, __: any, value: string) => {
+  const handleTemplateInput = useCallback((_: any, __: any, value: string) => {
     setTemplate(value)
     localStorage.setItem("template", value)
-  }
+  }, [])
 
-  const handleContextInput = (_: any, __: any, value: string) => {
+  const handleContextInput = useCallback((_: any, __: any, value: string) => {
     setContext(value)
     localStorage.setItem("context", value)
-  }
+  }, [])
 
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -61,8 +61,14 @@ const InputField: React.FC<Props> = ({ onSubmit, errorType }) => {
     setInSubmit(false)
   }
 
-  const isInvalidTemplateClass = errorType === "template" ? "is-invalid" : ""
-  const isInvalidContextClass = errorType === "context" ? "is-invalid" : ""
+  const isInvalidTemplateClass = useMemo(
+    () => (errorType === "template" ? "is-invalid" : ""),
+    [errorType]
+  )
+  const isInvalidContextClass = useMemo(
+    () => (errorType === "context" ? "is-invalid" : ""),
+    [errorType]
+  )
 
   return (
     <div className="input-field-container">
