@@ -13,6 +13,12 @@ exec/bash:
 run/bash:
 	docker compose run --rm server /bin/bash
 
+test:
+	$(RUN_CONTEXT) npm run test
+
+test/watch:
+	$(RUN_CONTEXT) npm run test:watch
+
 lint:
 	$(RUN_CONTEXT) npm run lint
 

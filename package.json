@@ -4,6 +4,8 @@
   "scripts": {
     "vdev": "vercel dev",
     "build": "next build",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "lint": "next lint",
     "prettier": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "prettier-write": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\""
@@ -20,13 +22,21 @@
     "swr": "1.0.1"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.15.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
     "@types/node": "16.11.10",
     "@types/react": "17.0.37",
+    "babel-jest": "^27.4.0",
     "eslint": "8.3.0",
     "eslint-config-next": "12.0.4",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-import": "2.25.3",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.4.0",
+    "jest-fetch-mock": "^3.0.3",
     "prettier": "2.5.0",
+    "react-test-renderer": "^17.0.2",
     "typescript": "4.5.2",
     "vercel": "23.1.2"
   }
