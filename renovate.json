@@ -1,7 +1,6 @@
 {
   "extends": ["config:base"],
   "automerge": false,
-  "bumpVersion": "minor",
   "ignoreDeps": ["docker"],
   "labels": ["renovate"],
   "schedule": ["after 3pm and before 7pm"],
