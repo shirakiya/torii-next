@@ -1,7 +1,7 @@
 {
   "extends": ["config:base"],
   "automerge": false,
-  "ignoreDeps": ["docker"],
+  "ignoreDeps": ["python"],
   "labels": ["renovate"],
   "schedule": ["after 3pm and before 7pm"],
   "timezone": "Asia/Tokyo"
