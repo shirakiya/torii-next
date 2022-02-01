@@ -16,7 +16,7 @@
     "codemirror": "5.65.1",
     "next": "12.0.9",
     "react": "17.0.2",
-    "react-bootstrap": "2.1.1",
+    "react-bootstrap": "2.1.2",
     "react-codemirror2": "7.2.1",
     "react-dom": "17.0.2",
     "swr": "1.2.0"
