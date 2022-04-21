@@ -13,7 +13,7 @@
   "dependencies": {
     "bootstrap": "5.1.3",
     "bootswatch": "5.1.3",
-    "codemirror": "5.65.2",
+    "codemirror": "5.65.3",
     "next": "12.1.5",
     "react": "18.0.0",
     "react-bootstrap": "2.3.0",
