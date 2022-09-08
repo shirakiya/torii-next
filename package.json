@@ -11,7 +11,7 @@
     "prettier-write": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\""
   },
   "dependencies": {
-    "bootstrap": "5.2.0",
+    "bootstrap": "5.2.1",
     "bootswatch": "5.2.0",
     "codemirror": "5.65.8",
     "next": "12.2.5",
