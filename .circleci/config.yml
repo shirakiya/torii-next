@@ -5,7 +5,7 @@ node-executor: &node-executor
   tag: "14.18"
 
 orbs:
-  node: circleci/node@5.0.3
+  node: circleci/node@5.1.0
 
 jobs:
   test:
