@@ -35,7 +35,7 @@
     "identity-obj-proxy": "3.0.0",
     "jest": "27.5.1",
     "jest-fetch-mock": "3.0.3",
-    "prettier": "2.8.4",
+    "prettier": "2.8.6",
     "react-test-renderer": "18.2.0",
     "typescript": "5.0.2",
     "vercel": "28.17.0"
