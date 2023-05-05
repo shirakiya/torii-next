@@ -38,6 +38,6 @@
     "prettier": "2.8.8",
     "react-test-renderer": "18.2.0",
     "typescript": "5.0.4",
-    "vercel": "29.0.3"
+    "vercel": "29.1.1"
   }
 }
